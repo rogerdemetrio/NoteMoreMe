@@ -30,7 +30,7 @@ Projeto em inicio de desenvolvimento
 
 ## Aprendizados
 
-- 
+- Trabalhar com canvas no flet para desenhar elementos na tela
 
 
 ## Autores
