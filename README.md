@@ -15,7 +15,7 @@ Projeto em inicio de desenvolvimento
 
 ## Screenshots
 
-<img src="https://placehold.co/600x400" height="350" /> <img src="https://placehold.co/600x400" height="350" /> 
+<img src="https://placehold.co/600x400" height="250" /> <img src="https://placehold.co/600x400" height="250" /> 
 
 
 ## Documentação
