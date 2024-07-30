@@ -23,4 +23,4 @@ def main(page: ft.Page):
     )
 
     
-ft.app(target=main,name="NoteMoreMe")
+ft.app(target=main,name="NoteMoreMe") 
