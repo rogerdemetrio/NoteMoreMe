@@ -129,8 +129,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-flutter
-flutter/
 
 # Spyder project settings
 .spyderproject
@@ -166,3 +164,7 @@ cython_debug/
 settings.json
 /.vscode
 .vscode
+
+flutter/
+/flutter
+flutter
