@@ -22,10 +22,11 @@ def main(page: ft.Page):
         titulo_texto.value = ""
         page.update()
 
-    rail = ft.NavigationRail(
+    rail = ft.Column([ft.Container(expand=1),ft.NavigationRail(
         selected_index=0,
         label_type=ft.NavigationRailLabelType.ALL,
-        width=60,
+        #width=60,
+        expand=1,
         #leading=ft.FloatingActionButton(icon=ft.icons.CREATE),
         trailing=ft.FloatingActionButton(icon=ft.icons.POST_ADD,on_click=add_banco),
         #group_alignment=-0.75,
@@ -46,12 +47,7 @@ def main(page: ft.Page):
             ),
         ],
         on_change=lambda e: print("Selected destination:", e.control.selected_index),
-    )
-
-
-
-
-
+    ),ft.Container(expand=1)],alignment=ft.alignment.center,width=60,)
     
     titulo_texto = ft.TextField(autocorrect = True,min_lines = 1,max_lines = 1,border = ft.InputBorder.NONE,bgcolor = ft.colors.TRANSPARENT,color = ft.colors.BLUE_GREY_800,
                          content_padding = ft.padding.only(top=40, right=62),text_size= (tamanho_letra*1.5))
