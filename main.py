@@ -5,8 +5,8 @@ import models as md
 
 def main(page: ft.Page):
     # Padrões da pagina
-    page.window.height = 900
-    page.window.width = 600
+    page.window.height = 720
+    page.window.width = 420
     page.window.center()
     page.title = "NoteMoreMe"
     page.padding = 0
@@ -22,28 +22,27 @@ def main(page: ft.Page):
         titulo_texto.value = ""
         page.update()
 
-    rail = ft.Column([ft.Container(expand=1),ft.NavigationRail(
+    bt = ft.Column([ft.FloatingActionButton(icon=ft.icons.POST_ADD,on_click=add_banco,tooltip="Adiciona o texto")],height=50)
+    rail = ft.Column([ft.Container(expand=1,expand_loose=False,content=bt),ft.NavigationRail(
         selected_index=0,
         label_type=ft.NavigationRailLabelType.ALL,
         #width=60,
         expand=1,
-        #leading=ft.FloatingActionButton(icon=ft.icons.CREATE),
-        trailing=ft.FloatingActionButton(icon=ft.icons.POST_ADD,on_click=add_banco),
         #group_alignment=-0.75,
         bgcolor=ft.colors.TRANSPARENT,
         destinations=[
             ft.NavigationRailDestination(
-                icon=ft.icons.FAVORITE_BORDER, selected_icon=ft.icons.FAVORITE, label="First"
+                icon=ft.icons.TEXT_SNIPPET_OUTLINED, selected_icon=ft.icons.TEXT_SNIPPET, label="Novo"
             ),
             ft.NavigationRailDestination(
                 icon_content=ft.Icon(ft.icons.BOOKMARK_BORDER),
                 selected_icon_content=ft.Icon(ft.icons.BOOKMARK),
-                label="Second",
+                label="Book",
             ),
             ft.NavigationRailDestination(
                 icon=ft.icons.SETTINGS_OUTLINED,
                 selected_icon_content=ft.Icon(ft.icons.SETTINGS),
-                label_content=ft.Text("Settings"),
+                label_content=ft.Text("Config"),
             ),
         ],
         on_change=lambda e: print("Selected destination:", e.control.selected_index),
@@ -63,7 +62,7 @@ def main(page: ft.Page):
                 cp.shapes.append(linha)
         return cp
 
-    #page.floating_action_button = ft.FloatingActionButton(icon=ft.icons.ADD,on_click=add_banco)
+    
     input_texto = ft.Container(expand=True,content=texto)
 
     def carrega_pagina(e):
