@@ -15,7 +15,7 @@ def main(page: ft.Page):
 
     # Padrões da pagina
     page.window.height = ms.th * 0.85
-    page.window.width = ms.tw * 0.85
+    page.window.width = ms.tw * 0.3
     page.window.center()
     page.title = "NoteMoreMe"
     page.padding = 0
@@ -31,28 +31,16 @@ def main(page: ft.Page):
         titulo_texto.value = ""
         page.update()
 
-    bt = ft.Column([ft.FloatingActionButton(icon=ft.icons.POST_ADD,on_click=add_banco,tooltip="Adiciona o texto")])
+    bt = ft.Container(ft.Column([ft.FloatingActionButton(icon=ft.icons.POST_ADD,on_click=add_banco,tooltip="Adiciona o texto")]),padding=3)
     rail = ft.Column([ft.Container(expand=1,expand_loose=False,content=bt),ft.NavigationRail(
         selected_index=0,
         label_type=ft.NavigationRailLabelType.ALL,
-        #width=60,
         expand=1,
-        #group_alignment=-0.75,
         bgcolor=ft.colors.TRANSPARENT,
         destinations=[
-            ft.NavigationRailDestination(
-                icon=ft.icons.TEXT_SNIPPET_OUTLINED, selected_icon=ft.icons.TEXT_SNIPPET, label="Novo"
-            ),
-            ft.NavigationRailDestination(
-                icon_content=ft.Icon(ft.icons.BOOKMARK_BORDER),
-                selected_icon_content=ft.Icon(ft.icons.BOOKMARK),
-                label="Book",
-            ),
-            ft.NavigationRailDestination(
-                icon=ft.icons.SETTINGS_OUTLINED,
-                selected_icon_content=ft.Icon(ft.icons.SETTINGS),
-                label_content=ft.Text("Config"),
-            ),
+            ft.NavigationRailDestination(icon=ft.icons.TEXT_SNIPPET_OUTLINED, selected_icon=ft.icons.TEXT_SNIPPET, label="Novo"),
+            ft.NavigationRailDestination(icon_content=ft.Icon(ft.icons.BOOKMARK_BORDER),selected_icon_content=ft.Icon(ft.icons.BOOKMARK),label="Book",),
+            ft.NavigationRailDestination(icon=ft.icons.SETTINGS_OUTLINED,selected_icon_content=ft.Icon(ft.icons.SETTINGS),label_content=ft.Text("Config"),),
         ],
         on_change=lambda e: get_pagina(e.control.selected_index),
     ),ft.Container(expand=1)],alignment=ft.alignment.center,width=60,)
@@ -75,7 +63,7 @@ def main(page: ft.Page):
 
     input_texto = ft.Container(expand=True,content=texto)
 
-    def carrega_pagina(e):
+    def carrega_pagina():
         page.controls.clear()
         page.add(bg())
         page.add(ft.Row([rail,ft.Column([titulo_texto,input_texto], alignment=ft.MainAxisAlignment.START, expand=True),],expand=True,))
@@ -84,16 +72,12 @@ def main(page: ft.Page):
         match index:
             case 0:
                 carrega_pagina
-                print("teste 0")
             case 1:
-                print("teste 1")
+                page.controls.clear()
             case 2:
-                print("teste 2")
+                page.controls.clear()
             case _:
                 pass
-    
-    page.on_resized = carrega_pagina
-    
+                 
     page.update()
-
 ft.app(target=main,name="NoteMoreMe") 
