@@ -22,7 +22,7 @@ def main(page: ft.Page):
         titulo_texto.value = ""
         page.update()
 
-    bt = ft.Column([ft.FloatingActionButton(icon=ft.icons.POST_ADD,on_click=add_banco,tooltip="Adiciona o texto")],height=50)
+    bt = ft.Column([ft.FloatingActionButton(icon=ft.icons.POST_ADD,on_click=add_banco,tooltip="Adiciona o texto")])
     rail = ft.Column([ft.Container(expand=1,expand_loose=False,content=bt),ft.NavigationRail(
         selected_index=0,
         label_type=ft.NavigationRailLabelType.ALL,
@@ -45,8 +45,9 @@ def main(page: ft.Page):
                 label_content=ft.Text("Config"),
             ),
         ],
-        on_change=lambda e: print("Selected destination:", e.control.selected_index),
+        on_change=lambda e: get_pagina(e.control.selected_index),
     ),ft.Container(expand=1)],alignment=ft.alignment.center,width=60,)
+    
     
     titulo_texto = ft.TextField(autocorrect = True,min_lines = 1,max_lines = 1,border = ft.InputBorder.NONE,bgcolor = ft.colors.TRANSPARENT,color = ft.colors.BLUE_GREY_800,
                          content_padding = ft.padding.only(top=40, right=62),text_size= (tamanho_letra*1.5))
@@ -62,15 +63,27 @@ def main(page: ft.Page):
                 cp.shapes.append(linha)
         return cp
 
-    
+
     input_texto = ft.Container(expand=True,content=texto)
 
     def carrega_pagina(e):
         page.controls.clear()
         page.add(bg())
         page.add(ft.Row([rail,ft.Column([titulo_texto,input_texto], alignment=ft.MainAxisAlignment.START, expand=True),],expand=True,))
-
+    
+    def get_pagina(index):
+        match index:
+            case 0:
+                carrega_pagina
+                print("teste 0")
+            case 1:
+                print("teste 1")
+            case 2:
+                print("teste 2")
+            case _:
+                pass
+    
     page.on_resized = carrega_pagina
+    
     page.update()
-
 ft.app(target=main,name="NoteMoreMe") 
