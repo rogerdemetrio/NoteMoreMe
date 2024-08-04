@@ -1,12 +1,21 @@
 import flet as ft
 import flet.canvas as cv
 import models as md
-
+from screeninfo import get_monitors
 
 def main(page: ft.Page):
+    class TMonitor():
+        def mon_size(self):
+            #global th,tw
+            for m in get_monitors():
+                self.tw = m.width
+                self.th = m.height
+    ms = TMonitor()
+    ms.mon_size()
+
     # Padrões da pagina
-    page.window.height = 720
-    page.window.width = 420
+    page.window.height = ms.th * 0.85
+    page.window.width = ms.tw * 0.85
     page.window.center()
     page.title = "NoteMoreMe"
     page.padding = 0
@@ -86,4 +95,5 @@ def main(page: ft.Page):
     page.on_resized = carrega_pagina
     
     page.update()
+
 ft.app(target=main,name="NoteMoreMe") 
